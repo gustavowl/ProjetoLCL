@@ -19,7 +19,7 @@ architecture entry_fsm of entry is
 	constant STRESET: std_logic_vector (1 downto 0) := "01";
 	constant STSAVE: std_logic_vector (1 downto 0) := "10";
 	constant STDOOP: std_logic_vector (1 downto 0) := "11";
-	signal st: std_logic_vector (1 downto 0) := STWAIT;
+	signal st: std_logic_vector (1 downto 0) := STRESET;
 begin
 	PROCESS (clk)
 	BEGIN
