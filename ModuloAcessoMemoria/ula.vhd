@@ -25,9 +25,9 @@ begin
 		if (clk'event and clk = '1') then
 			case st is
 				when STWAIT =>
-					if (clr'event and clr = '1') then
+					if ( clr = '1') then
 						st <= STRESET;
-					elsif (do_op'event and do_op = '1') then
+					elsif ( do_op = '1') then
 						st <= STLERA;
 					end if;
 				when STLERA =>
@@ -90,10 +90,10 @@ begin
 	opcode <= inst_in (15 downto 12);
 	rst_reg <= '1' when st = STRESET else '0';
 	--demux
-	end_reg <= inst_in(11 downto 9) when st = STLERA else
-		inst_in (5 downto 3) when st = STWAITWR and opcode(3) = '0' else
-		inst_in(8 downto 6) when (st = STLERB and (opcode(3) = '0' or opcode = "1001")) or
-		(st = STWAITWR and (opcode = "1000" or opcode = "1110"));
+	end_reg <= inst_in(11 downto 9) when st = STWAIT else
+		inst_in (5 downto 3) when st = STLERB and opcode(3) = '0' else
+		inst_in(8 downto 6) when (st = STLERA and (opcode(3) = '0' or opcode = "1001")) or
+		(st = STLERB and (opcode = "1000" or opcode = "1110"));
 
 	ula_a <= from_reg when st = STLERA;
 	
@@ -106,8 +106,8 @@ begin
 	--operações de escrita
 	--quando opcode = 0xxx ou 1110, ou seja, valor vem da ula
 		--verifica se irá escrever no registrador (só salva valor válido)
-	esc_reg <= '1' when st = STWAITWR and erro_ula = '0' and ( opcode(3) = '0' or opcode = "1110" 
 	--quando opcode = 1000, escreve, no registrador, valor vindo da memória
+	esc_reg <= '1' when st = STWAITWR and erro_ula = '0' and ( opcode(3) = '0' or opcode = "1110" 
 		or  opcode = "1000" )  else '0';
 		--atualiza valor a ser salvo no registrador
 	val_reg <= from_ula when st = STWAITWR and ( opcode(3) = '0' or opcode = "1110" ) else

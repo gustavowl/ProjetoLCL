@@ -8,9 +8,7 @@ entity entry IS
 port ( clk, clr, valid, do_operation: in std_logic;
 		switches: in std_logic_vector(15 downto 0);
 		save_instru, do_next_instru, reset: out std_logic;
-		instru: out std_logic_vector (15 downto 0);
-		state: out std_logic_vector (1 downto 0);
-		clkout: out std_logic
+		instru: out std_logic_vector (15 downto 0)
 );
 end entry;
 
@@ -37,20 +35,20 @@ begin
 						st <= STDOOP;
 					end if;
 				when STRESET =>
-					if (clr'event and clr = '0') then
+--					if (clr'event and clr = '0') then
 						--wait for 10 ps; --espera e verifica se sinal estabilizou
 						st <= STWAIT;
-					end if;
+--					end if;
 				when STDOOP =>
-					if (do_operation'event and do_operation = '0') then
+--					if (do_operation'event and do_operation = '0') then
 						--wait for 10 ps; --espera e verifica se sinal estabilizou
 						st <= STWAIT;
-					end if;
+--					end if;
 				when STSAVE =>
-					if (valid'event and valid = '0') then
+--					if (valid'event and valid = '0') then
 						--wait for 10 ps; --espera e verifica se sinal estabilizou
 						st <= STWAIT;
-					end if;
+--					end if;
 				when others =>
 					st <= STWAIT;
 			end case;
@@ -75,6 +73,4 @@ begin
 	save_instru <= '1' when st = STSAVE else '0';
 	do_next_instru <= '1' when st = STDOOP else '0';
 	instru <= "0000000000000000" when st = STRESET else switches when st = STSAVE;
-	state <= st;
-	clkout <= clk;
 end entry_fsm;
