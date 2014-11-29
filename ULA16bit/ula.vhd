@@ -251,13 +251,13 @@ end somador16bits;
 
 
 -----------------------------------------------------------------------
-------------------------------ULA--------------------------------------
+-----------------------------ULA-PO------------------------------------
 -----------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity ula is
+entity ula_po is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
@@ -265,9 +265,9 @@ entity ula is
 		s: out std_logic_vector(15 downto 0);
 		couterro: out std_logic
 	);
-end ula;
+end ula_po;
 
-architecture ula of ula is
+architecture ula_po of ula_po is
 	component CompLog
 	port (
 		a: in std_logic_vector(15 downto 0);
@@ -296,5 +296,80 @@ begin
 	complog0: CompLog port map (a, b, x, y, z, ia, ib, cin, cout);
 	somador8b0: somador16bits port map (ia, ib, cin, s, cout2);
 	couterro <= cout or cout2;
+end ula_po;
+
+-----------------------------------------------------------------------
+-----------------------------ULA-PC------------------------------------
+-----------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity ula_pc IS
+port ( clk, do_op : in std_logic;
+		done, state: out std_logic
+);
+end ula_pc;
+
+architecture ula_pc of ula_pc is
+	constant STDOINGOP: std_logic := '0';
+	constant STOPDONE: std_logic := '1';
+	signal st: std_logic;
+begin
+	--espera um ciclo de clock para ter certeza que as operações
+	--se estabilizaram
+	PROCESS (clk)
+	BEGIN
+		if (clk'event and clk = '1') then
+			case st is
+				when STOPDONE =>
+					if (do_op'event and do_op = '1') then
+						st <= STDOINGOP;
+					end if;
+				when others =>
+					st <= STOPDONE;
+			end case;
+		end if;
+	end process;
+
+	done <= '1' when st = STOPDONE else '0';
+	state <= st;
+end ula_pc;
+
+-----------------------------------------------------------------------
+-------------------------------ULA-------------------------------------
+-----------------------------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ula is
+	port (
+		a: in std_logic_vector(15 downto 0);
+		b: in std_logic_vector(15 downto 0);
+		x, y, z, clk, do_op: in std_logic;
+		s: out std_logic_vector(15 downto 0);
+		couterro, done, state: out std_logic
+	);
 end ula;
---só pra fazer o teste
+
+architecture ula of ula is
+	component ula_po
+	port (
+		a: in std_logic_vector(15 downto 0);
+		b: in std_logic_vector(15 downto 0);
+		x, y, z: in std_logic;
+		s: out std_logic_vector(15 downto 0);
+		couterro: out std_logic
+	);
+	end component;
+
+	component ula_pc
+	port (
+		clk, do_op : in std_logic;
+		done, state: out std_logic
+	);
+	end component;
+
+begin
+	ulapo: ula_po port map (a, b, x, y, z, s, couterro);
+	ulapc: ula_pc port map (clk, do_op, done, state);
+end ula;
