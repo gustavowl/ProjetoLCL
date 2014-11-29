@@ -6,13 +6,14 @@ end ula_tb;
 
 architecture ula_tb of ula_tb is
 	signal ma, mb, ms: std_logic_vector(15 downto 0);
-	signal mx, my, mz, mcout: std_logic;
+	signal mw, mx, my, mz, mcout: std_logic;
 begin
 	vector: entity work.ula
 	port map (
 		a => ma,
 		b => mb,
 		s => ms,
+		w => mw,
 		x => mx,
 		y => my,
 		z => mz,
@@ -23,6 +24,7 @@ begin
 	begin
 		ma <= "0000000000001010";
 		mb <= "0000000000000010";
+		mw <= '0';
 		mx <= '0';
 		my <= '0';
 		mz <= '0';
@@ -58,6 +60,7 @@ begin
 		mz <= '0';
 		wait for 50 ns;
 
+		mw <= '1';
 		mx <= '1';
 		my <= '1';
 		mz <= '1';

@@ -53,16 +53,20 @@ architecture Mux8x1A of Mux8x1A is
 	end component;
 
 	signal temp: std_logic_vector (15 downto 0);
-	signal txy, tz: std_logic;
+	signal tdesl, tz: std_logic;
 begin
-	temp <= a when x = '0' else --seleciona o valor da saída de agora com xyz
-		a and b when y = '0' and z = '0' else
-		a or b when y = '0' and z = '1' else
-		a nor b when y = '1' and z = '0' else
-		not a;
-	txy <= (not x) and y;
-	tz <= not z;
-	desloc: deslocador port map (temp, txy, tz, c, cout);
+	--seleciona o valor de saída baseado na escolha de entrada XYZ
+	--as primeiras condições são para operações em lógica booleana
+	--receberá o valor de A caso seja feita alguma operação algébrica
+	--ou deslocamento de bits
+	temp <= a and b when x = '0' and y = '1' and z = '0' else
+		a nor b when x = '0' and y = '1' and z = '1' else
+		a or b when x = '1' and y = '0' and z = '0' else a;
+	--só irá efetuar deslocamento de bits caso xyz = 101 ou 110
+	tdesl <= '1' when x = '1' and ( ( y = '0' and z = '1') or ( y = '1' and z = '0' ) ) else '0';
+	--tz armazena o lado para qual será efetuado o deslocamento
+	tz <= z;
+	desloc: deslocador port map (temp, tdesl, tz, c, cout);
 end Mux8x1A;
 
 -----------------------------------------------------------------------
@@ -123,7 +127,7 @@ entity CompLog is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		x, y, z: in std_logic;
+		w, x, y, z: in std_logic;
 		ia: out std_logic_vector(15 downto 0);
 		ib: out std_logic_vector(15 downto 0);
 		Cin: out std_logic; --p/ conversão em complemento de 2
@@ -162,11 +166,16 @@ architecture CompLog of CompLog is
 		c: out std_logic
 	);
 	end component;
+	signal tx, ty, tz : std_logic;
 begin
-	mux8x1a0: Mux8x1A port map (a, b, x, y, z, ia, Cout);
+	--se w = 1 realiza soma mais constante
+	tx <= '0' when w = '1' else x;
+	ty <= '0' when w = '1' else y;
+	tz <= '0' when w = '1' else z;
+	mux8x1a0: Mux8x1A port map (a, b, tx, ty, tz, ia, Cout);
 --	ia <= "01001001";
-	mux8x1b0: Mux8x1B port map (b, x, y, z, ib);
-	mux8x1c0: Mux8x1C port map (x, y, z, Cin);
+	mux8x1b0: Mux8x1B port map (b, tx, ty, tz, ib);
+	mux8x1c0: Mux8x1C port map (tx, ty, tz, Cin);
 end CompLog;
 
 -----------------------------------------------------------------------
@@ -257,7 +266,7 @@ entity ula is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		x, y, z: in std_logic;
+		w, x, y, z: in std_logic;
 		s: out std_logic_vector(15 downto 0);
 		couterro: out std_logic
 	);
@@ -268,7 +277,7 @@ architecture ula of ula is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		x, y, z: in std_logic;
+		w, x, y, z: in std_logic;
 		ia: out std_logic_vector (15 downto 0);
 		ib: out std_logic_vector(15 downto 0);
 		Cin: out std_logic;
@@ -289,7 +298,7 @@ architecture ula of ula is
 	signal ia, ib: std_logic_vector(15 downto 0);
 	signal cin, cout, cout2: std_logic;
 begin
-	complog0: CompLog port map (a, b, x, y, z, ia, ib, cin, cout);
+	complog0: CompLog port map (a, b, w, x, y, z, ia, ib, cin, cout);
 	somador8b0: somador16bits port map (ia, ib, cin, s, cout2);
 	couterro <= cout or cout2;
 end ula;

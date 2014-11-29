@@ -6,6 +6,7 @@ vcom ula_tb.vhd
 
 vsim ula_tb
 
+add wave /ula_tb/mw
 add wave /ula_tb/mx
 add wave /ula_tb/my
 add wave /ula_tb/mz
