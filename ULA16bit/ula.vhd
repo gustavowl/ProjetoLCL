@@ -127,7 +127,7 @@ entity CompLog is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		w, x, y, z: in std_logic;
+		x, y, z: in std_logic;
 		ia: out std_logic_vector(15 downto 0);
 		ib: out std_logic_vector(15 downto 0);
 		Cin: out std_logic; --p/ conversão em complemento de 2
@@ -166,16 +166,11 @@ architecture CompLog of CompLog is
 		c: out std_logic
 	);
 	end component;
-	signal tx, ty, tz : std_logic;
 begin
-	--se w = 1 realiza soma mais constante
-	tx <= '0' when w = '1' else x;
-	ty <= '0' when w = '1' else y;
-	tz <= '0' when w = '1' else z;
-	mux8x1a0: Mux8x1A port map (a, b, tx, ty, tz, ia, Cout);
+	mux8x1a0: Mux8x1A port map (a, b, x, y, z, ia, Cout);
 --	ia <= "01001001";
-	mux8x1b0: Mux8x1B port map (b, tx, ty, tz, ib);
-	mux8x1c0: Mux8x1C port map (tx, ty, tz, Cin);
+	mux8x1b0: Mux8x1B port map (b, x, y, z, ib);
+	mux8x1c0: Mux8x1C port map (x, y, z, Cin);
 end CompLog;
 
 -----------------------------------------------------------------------
@@ -266,7 +261,7 @@ entity ula is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		w, x, y, z: in std_logic;
+		x, y, z: in std_logic;
 		s: out std_logic_vector(15 downto 0);
 		couterro: out std_logic
 	);
@@ -277,7 +272,7 @@ architecture ula of ula is
 	port (
 		a: in std_logic_vector(15 downto 0);
 		b: in std_logic_vector(15 downto 0);
-		w, x, y, z: in std_logic;
+		x, y, z: in std_logic;
 		ia: out std_logic_vector (15 downto 0);
 		ib: out std_logic_vector(15 downto 0);
 		Cin: out std_logic;
@@ -298,7 +293,7 @@ architecture ula of ula is
 	signal ia, ib: std_logic_vector(15 downto 0);
 	signal cin, cout, cout2: std_logic;
 begin
-	complog0: CompLog port map (a, b, w, x, y, z, ia, ib, cin, cout);
+	complog0: CompLog port map (a, b, x, y, z, ia, ib, cin, cout);
 	somador8b0: somador16bits port map (ia, ib, cin, s, cout2);
 	couterro <= cout or cout2;
 end ula;

@@ -13,7 +13,6 @@ begin
 		a => ma,
 		b => mb,
 		s => ms,
-		w => mw,
 		x => mx,
 		y => my,
 		z => mz,
@@ -60,7 +59,6 @@ begin
 		mz <= '0';
 		wait for 50 ns;
 
-		mw <= '1';
 		mx <= '1';
 		my <= '1';
 		mz <= '1';
