@@ -1,0 +1,391 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/run/media/koruja/KORUJA/Atividade 1.2/Decodificador
+Edecod
+Z1 w1411698187
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 d/run/media/koruja/KORUJA/Atividade 1.2/Decodificador
+Z5 8exercicio.vhd
+Z6 Fexercicio.vhd
+l0
+L169
+VY_:zliRfPd_e^<[]Y]NnG2
+Z7 OV;C;10.1d;51
+32
+Z8 !s108 1411699983.251397
+Z9 !s90 -reportprogress|300|exercicio.vhd|
+Z10 !s107 exercicio.vhd|
+o-O0
+Z11 tExplicit 1
+!s100 D8=kaO1HS4SS@nP3K:1oR3
+!i10b 1
+Adecod
+R2
+R3
+Z12 DEx4 work 5 decod 0 22 Y_:zliRfPd_e^<[]Y]NnG2
+l252
+L185
+V0`QIhKH:N9MzU]WnHRN2D3
+R7
+32
+R8
+R9
+R10
+o-O0
+R11
+!s100 iZ3MK5Tn9L7=zAAE473@h0
+!i10b 1
+Edecodhex
+Z13 w1413929936
+R2
+R3
+Z14 d/home/koruja/VHDL/ProjetoFinal/DecodificadorHexaDecimal16Bit
+R5
+R6
+l0
+L169
+VeYo;ZLk<iO8=RSJGCIT332
+R7
+32
+Z15 !s108 1413930093.365890
+R9
+R10
+o-O0
+R11
+!s100 @o2AeS[zj8_jod5RDF=N30
+!i10b 1
+Adecodhex
+R2
+R3
+DEx4 work 8 decodhex 0 22 eYo;ZLk<iO8=RSJGCIT332
+l252
+L185
+Vf9]T8?ZOY6`mBDmz6X_TI0
+!s100 7DnbnjEiZ<QB@SG43hBNo3
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Edecodhex16bit
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L269
+VacS8YWOFJQ?hH>n9[:AnD2
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 9=2aJoR33H>[ioXTZjJz10
+!i10b 1
+Adecodhex16bit
+R2
+R3
+Z16 DEx4 work 13 decodhex16bit 0 22 acS8YWOFJQ?hH>n9[:AnD2
+l295
+L280
+VG=DjH[Ri42YV?V=^2lzSe1
+!s100 ;T4LBS2diJBU3@QVY5a?l3
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Eexercicio_tb
+Z17 w1413930092
+R2
+R3
+R14
+Z18 8exercicio_tb.vhd
+Z19 Fexercicio_tb.vhd
+l0
+L4
+VF2JME=IV<a7F]@MPKI99T2
+!s100 nYhmR21cXGmVAfJoj8I_g2
+R7
+32
+!i10b 1
+Z20 !s108 1413930093.498946
+Z21 !s90 -reportprogress|300|exercicio_tb.vhd|
+Z22 !s107 exercicio_tb.vhd|
+o-O0
+R11
+Aarq_tb
+R16
+R2
+R3
+Z23 DEx4 work 12 exercicio_tb 0 22 F2JME=IV<a7F]@MPKI99T2
+l14
+L7
+V>]M5f[gEafZ=K=U4M2IKB2
+!s100 iR:0C4mH=ORzko2If?RcA1
+R7
+32
+!i10b 1
+R20
+R21
+R22
+o-O0
+R11
+Efil_e
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L101
+Vc7UQa9cSKE0TM:d=Yh]8;2
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 j@j59eOn`C76`BAHL;bR41
+!i10b 1
+Afil_e
+R2
+R3
+DEx4 work 5 fil_e 0 22 c7UQa9cSKE0TM:d=Yh]8;2
+l112
+L111
+VQgFiQ;M?Z>4`>oX[9SiXI1
+!s100 j2XZTmgVm_RS^IEUnA>FR1
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efila
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L8
+VOeiY@_@;X_ShTJY?5e7gP1
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 ZDMX05lNN^R9MUoknXg]d2
+!i10b 1
+Afila
+R2
+R3
+DEx4 work 4 fila 0 22 OeiY@_@;X_ShTJY?5e7gP1
+l19
+L18
+VEM??TK:]2>iafNT;gYg:h2
+!s100 [U<7LoJ5QF@NoQ96B53bV3
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efilb
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L32
+VgMn;lEJ?[IG6obUFZmN=33
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 gYBTjHVIEJUcoK3>bV>WJ1
+!i10b 1
+Afilb
+R2
+R3
+DEx4 work 4 filb 0 22 gMn;lEJ?[IG6obUFZmN=33
+l43
+L42
+VbX05TTlm8GNo4IJfQWAAQ2
+!s100 0ILCLTT9S1=BccjE@QBkl0
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efilc
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L56
+Vm=F0nA4O^0h9nYE0Nk@mN3
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 i2ioDTG_eNO;QIND[U=Jh0
+!i10b 1
+Afilc
+R2
+R3
+DEx4 work 4 filc 0 22 m=F0nA4O^0h9nYE0Nk@mN3
+l67
+L66
+VHcaeS7hJ]T@Van8Taa5_82
+!s100 5KW4nKh<E06XlPD3@k3h21
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efild
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L78
+VCH;fk[RjRE13f^?KY@Fgj2
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 _O3:`1cPeTEVWUQM;[3:T1
+!i10b 1
+Afild
+R2
+R3
+DEx4 work 4 fild 0 22 CH;fk[RjRE13f^?KY@Fgj2
+l89
+L88
+V:Wk7[;0W2`b74`_h26;gQ1
+!s100 B>a>1HmA4z0>>@YG[1N?_3
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efilf
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L123
+VhlJ^cEm9>P]6]<^V1kRm92
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 HID00IDLUi^>bo?d`NJL90
+!i10b 1
+Afilf
+R2
+R3
+DEx4 work 4 filf 0 22 hlJ^cEm9>P]6]<^V1kRm92
+l134
+L133
+Vab4lbgdd60@XQgKo03E4?3
+!s100 ao:i8hLa;j]bRCB_[I2?V0
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1
+Efilg
+R13
+R2
+R3
+R14
+R5
+R6
+l0
+L146
+V^@4GG^4<18TQkHB]QS]E92
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!s100 0G1HW;2b^@=SD;;`?;l>`1
+!i10b 1
+Afilg
+R2
+R3
+DEx4 work 4 filg 0 22 ^@4GG^4<18TQkHB]QS]E92
+l157
+L156
+V89d<2PXYI0e;?UEjYPgA:3
+!s100 @YMGXR<fSdD]An3aE41OW0
+R7
+32
+R15
+R9
+R10
+o-O0
+R11
+!i10b 1

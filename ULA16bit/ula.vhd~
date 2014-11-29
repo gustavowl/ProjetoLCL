@@ -59,7 +59,7 @@ begin
 		a and b when y = '0' and z = '0' else
 		a or b when y = '0' and z = '1' else
 		a nor b when y = '1' and z = '0' else
-		not a;
+		a;
 	txy <= (not x) and y;
 	tz <= not z;
 	desloc: deslocador port map (temp, txy, tz, c, cout);
