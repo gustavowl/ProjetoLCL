@@ -15,6 +15,7 @@ add wave /ula_tb/sreset
 add wave /ula_tb/ssave
 add wave /ula_tb/sdonext
 add wave /ula_tb/sinstru
+add wave /ula_tb/sclkout
 add wave /ula_tb/sstate
 
 force -freeze sim:/ula_tb/sclk 1 0, 0 {50 ps} -r 100

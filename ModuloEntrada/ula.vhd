@@ -9,7 +9,8 @@ port ( clk, clr, valid, do_operation: in std_logic;
 		switches: in std_logic_vector(15 downto 0);
 		save_instru, do_next_instru, reset: out std_logic;
 		instru: out std_logic_vector (15 downto 0);
-		state: out std_logic_vector (1 downto 0)
+		state: out std_logic_vector (1 downto 0);
+		clkout: out std_logic
 );
 end entry;
 
@@ -75,4 +76,5 @@ begin
 	do_next_instru <= '1' when st = STDOOP else '0';
 	instru <= "0000000000000000" when st = STRESET else switches when st = STSAVE;
 	state <= st;
+	clkout <= clk;
 end entry_fsm;

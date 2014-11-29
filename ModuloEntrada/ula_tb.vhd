@@ -5,7 +5,7 @@ entity ula_tb is
 end ula_tb;
 
 architecture ula_tb of ula_tb is
-	signal sclk, sclr, svalid, sdo_op: std_logic;
+	signal sclk, sclr, svalid, sdo_op, sclkout: std_logic;
 	signal sswitches: std_logic_vector (15 downto 0);
 	signal ssave, sdonext, sreset: std_logic;
 	signal sinstru: std_logic_vector (15 downto 0);
@@ -22,7 +22,8 @@ begin
 		do_next_instru => sdonext,
 		reset => sreset,
 		instru => sinstru,
-		state => sstate
+		state => sstate,
+		clkout => sclkout
 	);
 
 	process
