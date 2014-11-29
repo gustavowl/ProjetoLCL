@@ -19,12 +19,16 @@ add wave /ula_tb/sstate
 
 force -freeze sim:/ula_tb/sclk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/ula_tb/sswitches 1001100110011001 0
-force -freeze sim:/ula_tb/sclr 1 200
-force -freeze sim:/ula_tb/sclr 0 400
-force -freeze sim:/ula_tb/svalid 1 600
-force -freeze sim:/ula_tb/svalid 0 800
-force -freeze sim:/ula_tb/sdo_op 1 1000
-force -freeze sim:/ula_tb/sdo_op 0 1200
+force -freeze sim:/ula_tb/sclr 1 0
+force -freeze sim:/ula_tb/sclr 0 100
+force -freeze sim:/ula_tb/sclr 1 600
+force -freeze sim:/ula_tb/sclr 0 700
+force -freeze sim:/ula_tb/svalid 0 0
+force -freeze sim:/ula_tb/svalid 1 200
+force -freeze sim:/ula_tb/svalid 0 300
+force -freeze sim:/ula_tb/sdo_op 0 0
+force -freeze sim:/ula_tb/sdo_op 1 400
+force -freeze sim:/ula_tb/sdo_op 0 500
 
 view wave
 run 2 ns

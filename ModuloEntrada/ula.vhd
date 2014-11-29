@@ -65,14 +65,14 @@ begin
 --			do_next_instru <= '1';
 --		elsif (st = STSAVE) then
 --			save_instru <= '1';
+--			instru <= switches;
 --		end if;
 --		state <= st;
---		instru <= switches;
 	end process;
 
 	reset <= '1' when st = STRESET else '0';
 	save_instru <= '1' when st = STSAVE else '0';
 	do_next_instru <= '1' when st = STDOOP else '0';
+	instru <= "0000000000000000" when st = STRESET else switches when st = STSAVE;
 	state <= st;
-	instru <= switches;
 end entry_fsm;
