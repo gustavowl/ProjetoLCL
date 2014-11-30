@@ -19,7 +19,7 @@ begin
 	c <= a(15 downto 0) when desl = '0' else
 		'0' & a(15 downto 1) when lado = '0' else
 		a(14 downto 0) & '0';
-	cout <= a(15) when lado = '1' and desl = '1' else '0';
+	cout <= a(14) when lado = '1' and desl = '1' else '0';
 end deslocador;
 
 -----------------------------------------------------------------------

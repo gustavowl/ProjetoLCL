@@ -40,7 +40,7 @@ add wave /cdd_tb/sstat
 add wave /cdd_tb/sula_st
 
 force -freeze sim:/cdd_tb/sclk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/cdd_tb/sswitches 1110000001001001 0
+force -freeze sim:/cdd_tb/sswitches 1000000001000001 0
 force -freeze sim:/cdd_tb/sclr 1 100
 force -freeze sim:/cdd_tb/sclr 0 200
 force -freeze sim:/cdd_tb/svalid 0 0
@@ -56,7 +56,7 @@ force -freeze sim:/cdd_tb/sdo_op 1 2000
 
 
 
-force -freeze sim:/cdd_tb/sswitches 0101001000001000 1100
+force -freeze sim:/cdd_tb/sswitches 0101001010001000 1100
 force -freeze sim:/cdd_tb/svalid 1 1100
 force -freeze sim:/cdd_tb/svalid 0 1200
 
