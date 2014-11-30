@@ -18,6 +18,7 @@ architecture memacc_pc of memacc_pc is
 	constant STLERB: std_logic_vector (2 downto 0) := "011";
 	constant STWAITOP: std_logic_vector (2 downto 0) := "100";
 	constant STWAITWR: std_logic_vector (2 downto 0) := "101";
+	constant STWAITWR2: std_logic_vector (2 downto 0) := "110";
 	signal st: std_logic_vector (2 downto 0);
 begin
 	PROCESS (clk)
@@ -38,6 +39,8 @@ begin
 					if (op_done_ula = '1') then
 						st <= STWAITWR;
 					end if;
+				when STWAITWR =>
+					st <= STWAITWR2;
 				when others =>
 					st <= STWAIT;
 			end case;
@@ -84,6 +87,7 @@ architecture memacc_po of memacc_po is
 	constant STLERB: std_logic_vector (2 downto 0) := "011";
 	constant STWAITOP: std_logic_vector (2 downto 0) := "100";
 	constant STWAITWR: std_logic_vector (2 downto 0) := "101";
+	constant STWAITWR2: std_logic_vector (2 downto 0) := "110";
 
 	signal opcode : std_logic_vector(3 downto 0);
 begin
@@ -107,20 +111,20 @@ begin
 	--quando opcode = 0xxx ou 1110, ou seja, valor vem da ula
 		--verifica se irá escrever no registrador (só salva valor válido)
 	--quando opcode = 1000, escreve, no registrador, valor vindo da memória
-	esc_reg <= '1' when st = STWAITWR and erro_ula = '0' and ( opcode(3) = '0' or opcode = "1110" 
+	esc_reg <= '1' when (st = STWAITWR or st = STWAITWR2) and erro_ula = '0' and ( opcode(3) = '0' or opcode = "1110" 
 		or  opcode = "1000" )  else '0';
 		--atualiza valor a ser salvo no registrador
-	val_reg <= from_ula when st = STWAITWR and ( opcode(3) = '0' or opcode = "1110" ) else
-		from_ram when st = STWAITWR and opcode = "1000";
+	val_reg <= from_ula when (st = STWAITWR or st = STWAITWR2) and ( opcode(3) = '0' or opcode = "1110" ) else
+		from_ram when (st = STWAITWR or st = STWAITWR2) and opcode = "1000";
 
 	--atualizará o endereço a ser consultado na memória
-	end_ram <= from_ula when st = STWAITWR and opcode (3 downto 1) = "100";
+	end_ram <= from_ula when (st = STWAITWR or st = STWAITWR2) and opcode (3 downto 1) = "100";
 
 	--quando opcode = 1001, escreve, na memória, valor vindo do registrador
-	esc_ram <= '0' when st = STWAITWR and opcode = "1000" else
-		'1' when st = STWAITWR and opcode = "1001" and erro_ula = '0' else '0';
+	esc_ram <= '0' when (st = STWAITWR or st = STWAITWR2) and opcode = "1000" else
+		'1' when (st = STWAITWR or st = STWAITWR2) and opcode = "1001" and erro_ula = '0' else '0';
 
-	val_ram <= from_reg when st = STWAITWR and opcode = "1001";
+	val_ram <= from_reg when (st = STWAITWR or st = STWAITWR2) and opcode = "1001";
 	--escolhe operação baseado em opcode
 	ula_x <= opcode(2) when opcode(3) = '0' else '0';
 	ula_y <= opcode(1) when opcode(3) = '0' else '0';

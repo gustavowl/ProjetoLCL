@@ -322,7 +322,7 @@ begin
 		if (clk'event and clk = '1') then
 			case st is
 				when STOPDONE =>
-					if (do_op'event and do_op = '1') then
+					if (do_op = '1') then
 						st <= STDOINGOP;
 					end if;
 				when others =>

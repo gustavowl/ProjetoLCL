@@ -20,26 +20,27 @@ add wave /cdd_tb/sswitches
 
 add wave /cdd_tb/sop_done_ula
 add wave /cdd_tb/sfrom_reg2
-add wave /cdd_tb/sfrom_ram
+add wave /cdd_tb/sfrom_ram2
 add wave /cdd_tb/sfrom_ula
 add wave /cdd_tb/serro_ula
 add wave /cdd_tb/sdo_op_ula
 add wave /cdd_tb/sop_done
-add wave /cdd_tb/sval_ram
-add wave /cdd_tb/send_ram
+add wave /cdd_tb/sval_ram2
+add wave /cdd_tb/send_ram2
 add wave /cdd_tb/sval_reg2
 add wave /cdd_tb/sula_a
 add wave /cdd_tb/sula_b
 add wave /cdd_tb/send_reg2
-add wave /cdd_tb/sesc_ram
+add wave /cdd_tb/sesc_ram2
 add wave /cdd_tb/sesc_reg2
 add wave /cdd_tb/sula_x
 add wave /cdd_tb/sula_y
 add wave /cdd_tb/sula_z
 add wave /cdd_tb/sstat
+add wave /cdd_tb/sula_st
 
 force -freeze sim:/cdd_tb/sclk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/cdd_tb/sswitches 0000100110100000 0
+force -freeze sim:/cdd_tb/sswitches 1110000001001001 0
 force -freeze sim:/cdd_tb/sclr 1 100
 force -freeze sim:/cdd_tb/sclr 0 200
 force -freeze sim:/cdd_tb/svalid 0 0
@@ -54,12 +55,8 @@ force -freeze sim:/cdd_tb/sdo_op 1 2000
 
 
 
-force -freeze sim:/cdd_tb/sop_done_ula 0 0
-force -freeze sim:/cdd_tb/sfrom_ram 0000000000001100 0
-force -freeze sim:/cdd_tb/sfrom_ula 0000000001001001 0
-force -freeze sim:/cdd_tb/serro_ula 0 0
-force -freeze sim:/cdd_tb/sop_done_ula 1 900
-force -freeze sim:/cdd_tb/sswitches 0000100110110000 1100
+
+force -freeze sim:/cdd_tb/sswitches 0101001000001000 1100
 force -freeze sim:/cdd_tb/svalid 1 1100
 force -freeze sim:/cdd_tb/svalid 0 1200
 
