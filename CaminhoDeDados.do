@@ -47,6 +47,11 @@ add wave /cdd_tb/sled_reset
 add wave /cdd_tb/sled_erro_ula
 add wave /cdd_tb/sdisplays
 
+add wave /cdd_tb/sdisp3
+add wave /cdd_tb/sdisp2
+add wave /cdd_tb/sdisp1
+add wave /cdd_tb/sdisp0
+
 force -freeze sim:/cdd_tb/sclk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/cdd_tb/sswitches 1000000001000001 0
 force -freeze sim:/cdd_tb/sclr 1 100

@@ -24,6 +24,8 @@ architecture cdd_tb of cdd_tb is
 	signal sled_op_over, sled_doing_op, sled_reset, sled_erro_ula : std_logic;
 	signal sdisplays: std_logic_vector(15 downto 0);
 
+	signal sdisp3, sdisp2, sdisp1, sdisp0: std_logic_vector (0 to 6); --MS display --> LS display
+
 begin
 	vector: entity work.cdd
 	port map (
@@ -61,7 +63,13 @@ begin
 		led_doing_op => sled_doing_op,
 		led_reset => sled_reset,
 		led_erro_ula => sled_erro_ula,
-		displays => sdisplays
+		displays2 => sdisplays,
+
+		disp3 => sdisp3,
+		disp2 => sdisp2,
+		disp1 => sdisp1,
+		disp0 => sdisp0
+
 	);
 
 	process

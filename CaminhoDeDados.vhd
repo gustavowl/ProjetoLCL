@@ -28,7 +28,12 @@ port (
 
 
 			led_op_over, led_doing_op, led_reset, led_erro_ula : out std_logic;
-			displays: out std_logic_vector(15 downto 0)
+			displays2: out std_logic_vector(15 downto 0);
+
+			disp3: out std_logic_vector (0 to 6); --MS dlay
+			disp2: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+			disp1: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+			disp0: out std_logic_vector (0 to 6)  --LS dlay
 );
 end cdd;
 
@@ -97,9 +102,20 @@ architecture cdd of cdd is
 		);
 	end component;
 
+	component decodhex16bit is
+		port (
+			entry: in std_logic_vector(15 downto 0);
+			d3: out std_logic_vector (0 to 6); --MS dlay
+			d2: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+			d1: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+			d0: out std_logic_vector (0 to 6)  --LS dlay
+			--dlays: 0:a, 1:b, 2:c, 3:d, 4:e, 5:f, 6:g
+		);
+	end component;
+
 	signal save_instru, do_next_instru, reset, esc_reg, rst_reg, esc_ram, ula_x, ula_y, ula_z, do_op_ula, erro_ula,
 		op_done_ula, ula_st, op_done: std_logic;
-	signal instru, from_reg, val_reg, end_ram, val_ram, from_ram, ula_a, ula_b, from_ula: std_logic_vector (15 downto 0);
+	signal instru, from_reg, val_reg, end_ram, val_ram, from_ram, ula_a, ula_b, from_ula, displays: std_logic_vector (15 downto 0);
 	signal end_reg : std_logic_vector (2 downto 0);
 
 begin
@@ -136,4 +152,7 @@ begin
 
 	ModuloSaida: modsaida port map (clk, op_done, clr, erro_ula, from_ula, led_op_over, led_doing_op, led_reset, led_erro_ula,
 		displays);
+	displays2 <= displays;
+	
+	Decodificador: decodhex16bit port map (displays, disp3, disp2, disp1, disp0);
 end cdd;
