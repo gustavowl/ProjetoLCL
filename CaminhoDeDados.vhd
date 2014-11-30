@@ -16,13 +16,19 @@ port (
 			op_done_ula2, erro_ula2: out std_logic;
 			from_ula2: out std_logic_vector (15 downto 0);
 
-			do_op_ula2, op_done: out std_logic;
+			do_op_ula2, op_done2: out std_logic;
 			from_ram2, val_ram2, end_ram2, ula_a2, ula_b2: out std_logic_vector(15 downto 0);
 		stat : out std_logic_vector (2 downto 0);
 			esc_reg2: out std_logic;
 			from_reg2, val_reg2: out std_logic_vector (15 downto 0);
 			end_reg2 : out std_logic_vector (2 downto 0);
-			esc_ram2, ula_x2, ula_y2, ula_z2, ula_st2: out std_logic
+			esc_ram2, ula_x2, ula_y2, ula_z2, ula_st2: out std_logic;
+
+
+
+
+			led_op_over, led_doing_op, led_reset, led_erro_ula : out std_logic;
+			displays: out std_logic_vector(15 downto 0)
 );
 end cdd;
 
@@ -81,8 +87,18 @@ architecture cdd of cdd is
 		);
 	end component;
 
+	component modsaida is
+		port ( 
+			clk, op_over, reset, erro_ula: in std_logic;
+			result: in std_logic_vector (15 downto 0);
+			led_op_over, led_doing_op , led_reset, led_erro_ula: out std_logic;
+			displays: out std_logic_vector (15 downto 0)
+
+		);
+	end component;
+
 	signal save_instru, do_next_instru, reset, esc_reg, rst_reg, esc_ram, ula_x, ula_y, ula_z, do_op_ula, erro_ula,
-		op_done_ula, ula_st: std_logic;
+		op_done_ula, ula_st, op_done: std_logic;
 	signal instru, from_reg, val_reg, end_ram, val_ram, from_ram, ula_a, ula_b, from_ula: std_logic_vector (15 downto 0);
 	signal end_reg : std_logic_vector (2 downto 0);
 
@@ -91,6 +107,8 @@ begin
 	ModAccMem: memacc port map ( clk, clr, do_next_instru, op_done_ula, instru, from_reg, from_ram, from_ula, erro_ula,
 		do_op_ula, op_done, val_ram, end_ram, val_reg, ula_a, ula_b, end_reg, stat, esc_ram, esc_reg, rst_reg, ula_x,
 		ula_y, ula_z);
+
+	op_done2 <= op_done;
 
 	BancoReg: banco_reg port map (val_reg, end_reg, clk, esc_reg, clr, from_reg);
 	val_reg2 <= val_reg;
@@ -115,4 +133,7 @@ begin
 	erro_ula2 <= erro_ula;
 	op_done_ula2 <= op_done_ula;
 	ula_st2 <= ula_st;
+
+	ModuloSaida: modsaida port map (clk, op_done, clr, erro_ula, from_ula, led_op_over, led_doing_op, led_reset, led_erro_ula,
+		displays);
 end cdd;

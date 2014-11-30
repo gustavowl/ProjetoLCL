@@ -5,6 +5,7 @@ vcom BancoRegistradores/exercicio.vhd
 vcom DecodificadorHexaDecimal16Bit/exercicio.vhd
 vcom ModuloAcessoMemoria/ula.vhd
 vcom ModuloEntrada/ula.vhd
+vcom ModuloSaida/exercicio.vhd
 vcom RAM/ram.vhd
 vcom ULA16bit/ula.vhd
 vcom CaminhoDeDados.vhd
@@ -38,6 +39,13 @@ add wave /cdd_tb/sula_y
 add wave /cdd_tb/sula_z
 add wave /cdd_tb/sstat
 add wave /cdd_tb/sula_st
+
+
+add wave /cdd_tb/sled_op_over
+add wave /cdd_tb/sled_doing_op
+add wave /cdd_tb/sled_reset
+add wave /cdd_tb/sled_erro_ula
+add wave /cdd_tb/sdisplays
 
 force -freeze sim:/cdd_tb/sclk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/cdd_tb/sswitches 1000000001000001 0

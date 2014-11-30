@@ -20,6 +20,10 @@ architecture cdd_tb of cdd_tb is
 	signal sesc_ram2, sesc_reg2, sula_x, sula_y, sula_z, sula_st: std_logic;
 	signal sstat: std_logic_vector(2 downto 0);
 
+
+	signal sled_op_over, sled_doing_op, sled_reset, sled_erro_ula : std_logic;
+	signal sdisplays: std_logic_vector(15 downto 0);
+
 begin
 	vector: entity work.cdd
 	port map (
@@ -36,7 +40,7 @@ begin
 		from_ula2 => sfrom_ula,
 		erro_ula2 => serro_ula,
 		do_op_ula2 => sdo_op_ula,
-		op_done => sop_done,
+		op_done2 => sop_done,
 		val_ram2 => sval_ram2,
 		end_ram2 => send_ram2,
 		val_reg2 => sval_reg2,
@@ -49,7 +53,15 @@ begin
 		ula_y2 => sula_y,
 		ula_z2 => sula_z,
 		stat => sstat,
-		ula_st2 => sula_st
+		ula_st2 => sula_st,
+
+
+
+		led_op_over => sled_op_over,
+		led_doing_op => sled_doing_op,
+		led_reset => sled_reset,
+		led_erro_ula => sled_erro_ula,
+		displays => sdisplays
 	);
 
 	process
