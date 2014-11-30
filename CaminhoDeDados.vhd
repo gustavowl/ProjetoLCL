@@ -12,28 +12,12 @@ port (
 	clk, clr, valid, do_operation: in std_logic;
 	switches: in std_logic_vector(15 downto 0);
 
+	led_op_over, led_doing_op, led_reset, led_erro_ula : out std_logic;
 
-			op_done_ula2, erro_ula2: out std_logic;
-			from_ula2: out std_logic_vector (15 downto 0);
-
-			do_op_ula2, op_done2: out std_logic;
-			from_ram2, val_ram2, end_ram2, ula_a2, ula_b2: out std_logic_vector(15 downto 0);
-		stat : out std_logic_vector (2 downto 0);
-			esc_reg2: out std_logic;
-			from_reg2, val_reg2: out std_logic_vector (15 downto 0);
-			end_reg2 : out std_logic_vector (2 downto 0);
-			esc_ram2, ula_x2, ula_y2, ula_z2, ula_st2: out std_logic;
-
-
-
-
-			led_op_over, led_doing_op, led_reset, led_erro_ula : out std_logic;
-			displays2: out std_logic_vector(15 downto 0);
-
-			disp3: out std_logic_vector (0 to 6); --MS dlay
-			disp2: out std_logic_vector (0 to 6); --dlay de 7 segmentos
-			disp1: out std_logic_vector (0 to 6); --dlay de 7 segmentos
-			disp0: out std_logic_vector (0 to 6)  --LS dlay
+	disp3: out std_logic_vector (0 to 6); --MS dlay
+	disp2: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+	disp1: out std_logic_vector (0 to 6); --dlay de 7 segmentos
+	disp0: out std_logic_vector (0 to 6)  --LS dlay
 );
 end cdd;
 
@@ -116,7 +100,7 @@ architecture cdd of cdd is
 	signal save_instru, do_next_instru, reset, esc_reg, rst_reg, esc_ram, ula_x, ula_y, ula_z, do_op_ula, erro_ula,
 		op_done_ula, ula_st, op_done: std_logic;
 	signal instru, from_reg, val_reg, end_ram, val_ram, from_ram, ula_a, ula_b, from_ula, displays: std_logic_vector (15 downto 0);
-	signal end_reg : std_logic_vector (2 downto 0);
+	signal end_reg, stat : std_logic_vector (2 downto 0);
 
 begin
 	PointOfEntry: entry port map (clk, clr, valid, do_operation, switches, save_instru, do_next_instru, reset, instru);
@@ -124,35 +108,35 @@ begin
 		do_op_ula, op_done, val_ram, end_ram, val_reg, ula_a, ula_b, end_reg, stat, esc_ram, esc_reg, rst_reg, ula_x,
 		ula_y, ula_z);
 
-	op_done2 <= op_done;
+	--op_done2 <= op_done;
 
 	BancoReg: banco_reg port map (val_reg, end_reg, clk, esc_reg, clr, from_reg);
-	val_reg2 <= val_reg;
-	end_reg2 <= end_reg;
-	from_reg2 <= from_reg;
-	esc_reg2 <= esc_reg;
+	--val_reg2 <= val_reg;
+	--end_reg2 <= end_reg;
+	--from_reg2 <= from_reg;
+	--esc_reg2 <= esc_reg;
 
 	MemRam: ram port map (clk, esc_ram, end_ram, val_ram, from_ram);
-	esc_ram2 <= esc_ram;
-	end_ram2 <= end_ram;
-	val_ram2 <= val_ram;
-	from_ram2 <= from_ram;
+	--esc_ram2 <= esc_ram;
+	--end_ram2 <= end_ram;
+	--val_ram2 <= val_ram;
+	--from_ram2 <= from_ram;
 
 	UnidLogArit: ula port map(ula_a, ula_b, ula_x, ula_y, ula_z, clk, do_op_ula, from_ula, erro_ula, op_done_ula, ula_st);
-	ula_a2 <= ula_a;
-	ula_b2 <= ula_b;
-	ula_x2 <= ula_x;
-	ula_y2 <= ula_y;
-	ula_z2 <= ula_z;
-	do_op_ula2 <= do_op_ula;
-	from_ula2 <= from_ula;
-	erro_ula2 <= erro_ula;
-	op_done_ula2 <= op_done_ula;
-	ula_st2 <= ula_st;
+	--ula_a2 <= ula_a;
+	--ula_b2 <= ula_b;
+	--ula_x2 <= ula_x;
+	--ula_y2 <= ula_y;
+	--ula_z2 <= ula_z;
+	--do_op_ula2 <= do_op_ula;
+	--from_ula2 <= from_ula;
+	--erro_ula2 <= erro_ula;
+	--op_done_ula2 <= op_done_ula;
+	--ula_st2 <= ula_st;
 
 	ModuloSaida: modsaida port map (clk, op_done, clr, erro_ula, from_ula, led_op_over, led_doing_op, led_reset, led_erro_ula,
 		displays);
-	displays2 <= displays;
+	--displays2 <= displays;
 	
 	Decodificador: decodhex16bit port map (displays, disp3, disp2, disp1, disp0);
 end cdd;

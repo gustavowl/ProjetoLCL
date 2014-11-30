@@ -19,33 +19,10 @@ add wave /cdd_tb/svalid
 add wave /cdd_tb/sdo_op
 add wave /cdd_tb/sswitches
 
-add wave /cdd_tb/sop_done_ula
-add wave /cdd_tb/sfrom_reg2
-add wave /cdd_tb/sfrom_ram2
-add wave /cdd_tb/sfrom_ula
-add wave /cdd_tb/serro_ula
-add wave /cdd_tb/sdo_op_ula
-add wave /cdd_tb/sop_done
-add wave /cdd_tb/sval_ram2
-add wave /cdd_tb/send_ram2
-add wave /cdd_tb/sval_reg2
-add wave /cdd_tb/sula_a
-add wave /cdd_tb/sula_b
-add wave /cdd_tb/send_reg2
-add wave /cdd_tb/sesc_ram2
-add wave /cdd_tb/sesc_reg2
-add wave /cdd_tb/sula_x
-add wave /cdd_tb/sula_y
-add wave /cdd_tb/sula_z
-add wave /cdd_tb/sstat
-add wave /cdd_tb/sula_st
-
-
 add wave /cdd_tb/sled_op_over
 add wave /cdd_tb/sled_doing_op
 add wave /cdd_tb/sled_reset
 add wave /cdd_tb/sled_erro_ula
-add wave /cdd_tb/sdisplays
 
 add wave /cdd_tb/sdisp3
 add wave /cdd_tb/sdisp2
